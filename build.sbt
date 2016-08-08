@@ -2,14 +2,17 @@ name := "akkaclusterarena"
 version := "1.0"
 
 val akkaGroupId = "com.typesafe.akka"
-val akkaVersion = "2.4.9-RC1"
+val akkaVersion = "2.4.9-RC2"
 
 lazy val commonSettings = Seq(
   organization := "com.stratio",
   scalaVersion := "2.11.8",
   libraryDependencies := Seq(
     akkaGroupId %% "akka-actor" % akkaVersion,
-    akkaGroupId %% "akka-cluster" % akkaVersion
+    akkaGroupId %% "akka-cluster" % akkaVersion,
+    akkaGroupId %% "akka-cluster-tools" % akkaVersion,
+    akkaGroupId %% "akka-remote" % akkaVersion,
+    "org.slf4j" % "slf4j-log4j12" % "1.7.7"
   )
 )
 
