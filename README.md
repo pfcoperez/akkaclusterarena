@@ -16,7 +16,7 @@ Within the server machine:
 
 1. `git clone git@github.com:pfcoperez/akkaclusterarena.git`
 2. `cd akkaclusterarena`
-3. `sbt server/run` // Will listen to port 7891
+3. `sbt server/run`  (Will listen to port 7891)
 
 ### Client
 
@@ -24,7 +24,7 @@ Within the client machine:
 
 1. `git clone git@github.com:pfcoperez/akkaclusterarena.git`
 2. `cd akkaclusterarena`
-3. `sbt "client/run ip:port"`
+3. `sbt client/"run ip:port"`
 
 The client can be invoked without providing a server thus trying to connect to `127.0.0.1:7891`
 
