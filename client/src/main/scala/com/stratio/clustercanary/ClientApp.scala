@@ -17,9 +17,9 @@ object ClientApp extends App {
 
   val system = ActorSystem("ClientSystem")
 
-  val initialContacts = Set(
-    ActorPath.fromString("akka.tcp://CanaryFlock@127.0.0.1:7891/system/receptionist")
-  )
+  val defaultContactPoint = ActorPath.fromString("akka.tcp://CanaryFlock@127.0.0.1:7891/system/receptionist")
+
+  val initialContacts = if(args.length>0) args.toSet map (ActorPath.fromString) else Set(defaultContactPoint)
 
   val clusterClientActor = system.actorOf(
     ClusterClient.props(ClusterClientSettings(system).withInitialContacts(initialContacts)),
@@ -45,7 +45,7 @@ object ClientApp extends App {
       s"""Wrong echo received: "$msg" at step $n!"""
     )
 
-    println("...successfully echoed")
+    println("...successfully echoed.")
 
     if(stopAt.map(_ > n).getOrElse(true)) forEverSend(stopAt)(n+1)
   }
