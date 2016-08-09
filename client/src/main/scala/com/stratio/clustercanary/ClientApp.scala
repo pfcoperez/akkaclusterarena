@@ -15,11 +15,15 @@ import scala.concurrent.Await
 
 object ClientApp extends App {
 
+  def serverAddress2ActorPath(address: String): ActorPath =
+    ActorPath.fromString(s"akka.tcp://CanaryFlock@$address/system/receptionist")
+
+
   val system = ActorSystem("ClientSystem")
 
-  val defaultContactPoint = ActorPath.fromString("akka.tcp://CanaryFlock@127.0.0.1:7891/system/receptionist")
+  val defaultContactPoint = serverAddress2ActorPath("127.0.0.1:7891")
 
-  val initialContacts = if(args.length>0) args.toSet map (ActorPath.fromString) else Set(defaultContactPoint)
+  val initialContacts = if(args.length>0) args.toSet map (serverAddress2ActorPath) else Set(defaultContactPoint)
 
   val clusterClientActor = system.actorOf(
     ClusterClient.props(ClusterClientSettings(system).withInitialContacts(initialContacts)),
