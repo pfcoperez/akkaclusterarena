@@ -16,7 +16,7 @@ Within the server machine:
 
 1. `git clone git@github.com:pfcoperez/akkaclusterarena.git`
 2. `cd akkaclusterarena`
-3. `sbt server/run`  (Will listen to port 7891)
+3. `AKKA_CANARY_ADDR="ip" AKKA_CANARY_PORT=port sbt serv/run` 
 
 ### Client
 
